@@ -7,7 +7,13 @@ import { defineConfig, devices } from '@playwright/test';
 // import dotenv from 'dotenv';
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
-
+if (!process.env.NODE_ENV) {
+  require("dotenv").config({ path: `${__dirname}//src//config//.env` });
+} else {
+  require("dotenv").config({
+    path: `${__dirname}//src//config//.env.${process.env.NODE_ENV}`,
+  });
+}
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -27,8 +33,8 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
-// We are using UAT org of Allison
-    baseURL: "https://test.salesforce.com/", 
+/* We are using UAT org of Allison
+    baseURL: "https://test.salesforce.com/", */
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',

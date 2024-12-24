@@ -12,13 +12,16 @@ export default class LoginPage {
 
   constructor(private page: Page) {}
 
-  async navigateToLoginPage() {
+  /*async navigateToLoginPage() {
     await this.page.goto("/");
-  }
+  }*/
+    async navigateToLoginPage(url: string) {
+      await this.page.goto(url); 
+    }
   async fillUserName(username: string) {
     await this.page.locator(this.usernameInputSelector).fill(username);
   }
-  async fillPWD(password: string) {
+  async fillPassword(password: string) {
     await this.page.locator(this.passwordInputSelector).fill(password);
   }
   async clickLoginButton() {
